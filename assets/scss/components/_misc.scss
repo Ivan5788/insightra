@@ -1,0 +1,107 @@
+@use '../abstracts' as *;
+
+// Badges ------------------------------------------------------
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: space(1);
+  padding: 2px space(2);
+  border-radius: $radius-full;
+  font-size: fs('xs');
+  font-weight: $font-weight-medium;
+  line-height: 1.5;
+  white-space: nowrap;
+  background: var(--color-surface-2);
+  color: var(--color-text-secondary);
+
+  &--success {
+    background: var(--color-success-soft);
+    color: var(--color-success);
+  }
+
+  &--warning {
+    background: var(--color-warning-soft);
+    color: var(--color-warning);
+  }
+
+  &--danger {
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
+  }
+
+  &--info {
+    background: var(--color-info-soft);
+    color: var(--color-info);
+  }
+
+  &--primary {
+    background: var(--color-primary-soft);
+    color: var(--color-primary-soft-text);
+  }
+}
+
+// Cards -------------------------------------------------------
+.card {
+  @include card-surface;
+  padding: space(4);
+
+  @include up('md') {
+    padding: space(5);
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: space(3);
+    margin-bottom: space(4);
+  }
+
+  &__title {
+    font-size: fs('md');
+    font-weight: $font-weight-semibold;
+  }
+
+  &__subtitle {
+    margin-top: 2px;
+    font-size: fs('sm');
+    color: var(--color-text-muted);
+  }
+}
+
+// Mock-data label (honesty: all numbers are simulated) ----------
+.mock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: space(1);
+  padding: 2px space(2);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: $radius-full;
+  font-size: fs('xs');
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+// Toggle chips (multi-select filters) ----------------------------
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: space(1.5);
+}
+
+.chip {
+  @include reset-button;
+  padding: space(1) space(2.5);
+  border-radius: $radius-full;
+  border: 1px solid var(--color-border-strong);
+  font-size: fs('xs');
+  font-weight: $font-weight-medium;
+  color: var(--color-text-secondary);
+  @include focus-ring;
+
+  &.is-on {
+    border-color: var(--color-primary);
+    background: var(--color-primary-soft);
+    color: var(--color-primary-soft-text);
+  }
+}

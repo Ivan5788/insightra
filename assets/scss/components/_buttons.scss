@@ -1,0 +1,106 @@
+@use '../abstracts' as *;
+
+// Global button classes - used by <BaseButton> and anywhere a native
+// <button>/<a> needs the design-system look.
+.btn {
+  @include reset-button;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: space(2);
+  min-height: 36px;
+  padding: 0 space(3.5);
+  border-radius: $radius-md;
+  border: 1px solid transparent;
+  font-size: fs('base');
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast,
+    box-shadow $transition-fast;
+  @include focus-ring;
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &--primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+
+    &:hover:not(:disabled) {
+      background: var(--color-primary-hover);
+    }
+  }
+
+  &--secondary {
+    background: var(--color-surface);
+    border-color: var(--color-border-strong);
+    color: var(--color-text);
+
+    &:hover:not(:disabled) {
+      background: var(--color-surface-hover);
+    }
+  }
+
+  &--ghost {
+    color: var(--color-text-secondary);
+
+    &:hover:not(:disabled) {
+      background: var(--color-surface-hover);
+      color: var(--color-text);
+    }
+  }
+
+  &--danger {
+    background: var(--color-danger);
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      filter: brightness(0.95);
+    }
+  }
+
+  &--sm {
+    min-height: 30px;
+    padding: 0 space(2.5);
+    font-size: fs('sm');
+  }
+
+  &--lg {
+    min-height: $touch-target;
+    padding: 0 space(5);
+    font-size: fs('md');
+  }
+
+  &--icon {
+    padding: 0;
+    width: 36px;
+
+    &.btn--sm {
+      width: 30px;
+    }
+  }
+
+  &--block {
+    width: 100%;
+  }
+
+  // Bigger touch area on coarse pointers (phones / tablets)
+  @media (pointer: coarse) {
+    min-height: 40px;
+
+    &--icon {
+      width: 40px;
+    }
+  }
+}

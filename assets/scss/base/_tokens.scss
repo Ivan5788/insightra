@@ -1,0 +1,143 @@
+@use '../abstracts' as *;
+
+// ------------------------------------------------------------
+// Theme tokens as CSS custom properties.
+// Components only reference var(--token); switching
+// <html data-theme="dark"> swaps every value at once.
+// Chart colours are validated for colour-vision deficiency
+// (see docs/UI_UX_GUIDE.md -> Data visualisation colours).
+// ------------------------------------------------------------
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  // Brand
+  --color-primary: #0f6e73;
+  --color-primary-hover: #0b585c;
+  --color-primary-soft: #e3f1f0;
+  --color-primary-soft-text: #0b4f53;
+  --color-on-primary: #ffffff;
+  --color-accent: #e3a12f;
+
+  // Surfaces
+  --color-bg: #f4f3ef;
+  --color-surface: #ffffff;
+  --color-surface-2: #efede7;
+  --color-surface-hover: #f1efe9;
+  --color-overlay: rgb(26 28 34 / 0.45);
+
+  // Borders
+  --color-border: #e2dfd6;
+  --color-border-strong: #cbc6ba;
+
+  // Text
+  --color-text: #1a1c22;
+  --color-text-secondary: #4a4d57;
+  --color-text-muted: #6b6e78;
+  --color-text-inverse: #ffffff;
+
+  // Status (always paired with icon + label, never colour alone)
+  --color-success: #237a57;
+  --color-success-soft: #e4f2ea;
+  --color-warning: #a35c0a;
+  --color-warning-soft: #fbefdd;
+  --color-danger: #b43b2a;
+  --color-danger-soft: #fae7e3;
+  --color-info: #2c5f8a;
+  --color-info-soft: #e5eef6;
+
+  --color-focus: #0f6e73;
+
+  // Shadows
+  --shadow-sm: 0 1px 2px rgb(26 28 34 / 0.05);
+  --shadow-md: 0 4px 12px rgb(26 28 34 / 0.08);
+  --shadow-lg: 0 16px 40px rgb(26 28 34 / 0.16);
+
+  // Data visualisation - categorical (fixed order, CVD-validated)
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  --chart-4: #eda100;
+  --chart-5: #e87ba4;
+  --chart-6: #008300;
+  --chart-7: #6250d6;
+  --chart-8: #e34948;
+  // Sequential (single hue: blue, light -> dark)
+  --chart-seq-1: #e4effc;
+  --chart-seq-2: #9ec5f4;
+  --chart-seq-3: #5598e7;
+  --chart-seq-4: #1c5cab;
+  --chart-seq-5: #0d366b;
+  // Chart chrome
+  --chart-grid: #eceae3;
+  --chart-axis: #cbc6ba;
+  --chart-text: #6b6e78;
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: #e2dfd6;
+  --chart-previous: #a19d94;
+}
+
+@mixin dark-tokens {
+  color-scheme: dark;
+
+  --color-primary: #4fc1bc;
+  --color-primary-hover: #6fd0cb;
+  --color-primary-soft: #11393a;
+  --color-primary-soft-text: #a8e3df;
+  --color-on-primary: #062a2b;
+  --color-accent: #f0b54e;
+
+  --color-bg: #0f1214;
+  --color-surface: #171b1e;
+  --color-surface-2: #1e2327;
+  --color-surface-hover: #222830;
+  --color-overlay: rgb(0 0 0 / 0.6);
+
+  --color-border: #2a3035;
+  --color-border-strong: #3a4148;
+
+  --color-text: #eceae4;
+  --color-text-secondary: #b9b6ae;
+  --color-text-muted: #8e8b84;
+  --color-text-inverse: #1a1c22;
+
+  --color-success: #4cb782;
+  --color-success-soft: #12301f;
+  --color-warning: #e9a345;
+  --color-warning-soft: #33240f;
+  --color-danger: #f07563;
+  --color-danger-soft: #3a1a16;
+  --color-info: #79a9d6;
+  --color-info-soft: #14283b;
+
+  --color-focus: #6fd0cb;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 18px 44px rgb(0 0 0 / 0.6);
+
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
+  --chart-4: #c98500;
+  --chart-5: #d55181;
+  --chart-6: #0ca30c;
+  --chart-7: #9085e9;
+  --chart-8: #e66767;
+  --chart-seq-1: #1a2436;
+  --chart-seq-2: #184f95;
+  --chart-seq-3: #2a78d6;
+  --chart-seq-4: #6da7ec;
+  --chart-seq-5: #cde2fb;
+  --chart-grid: #252a2e;
+  --chart-axis: #3a4148;
+  --chart-text: #8e8b84;
+  --chart-tooltip-bg: #1e2327;
+  --chart-tooltip-border: #3a4148;
+  --chart-previous: #5e5b55;
+}
+
+[data-theme='dark'] {
+  @include dark-tokens;
+}

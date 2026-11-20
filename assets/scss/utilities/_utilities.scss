@@ -1,0 +1,53 @@
+@use '../abstracts' as *;
+
+.sr-only {
+  @include visually-hidden;
+}
+
+.truncate {
+  @include truncate;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: space(2);
+}
+
+.gap-3 {
+  gap: space(3);
+}
+
+.mt-2 {
+  margin-top: space(2);
+}
+
+.mt-4 {
+  margin-top: space(4);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.hide-mobile {
+  @include down('md') {
+    display: none !important;
+  }
+}
+
+.only-mobile {
+  @include up('md') {
+    display: none !important;
+  }
+}

@@ -1,0 +1,32 @@
+@use '../abstracts' as *;
+
+// Print stylesheet - used by the "Export PDF" feature (window.print()).
+// The browser's "Save as PDF" turns the report page into a PDF without
+// shipping a heavy PDF library to every user.
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  html {
+    background: #fff;
+  }
+
+  .no-print,
+  .app-sidebar,
+  .app-header,
+  .app-footer,
+  .toast-region {
+    display: none !important;
+  }
+
+  .app-shell__main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

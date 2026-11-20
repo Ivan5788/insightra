@@ -1,0 +1,5 @@
+// Abstracts layer: Sass-only tools (variables, functions, mixins).
+// It must NEVER output CSS, because it is injected into every component.
+@forward 'variables';
+@forward 'functions';
+@forward 'mixins';

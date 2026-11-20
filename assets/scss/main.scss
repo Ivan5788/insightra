@@ -1,0 +1,18 @@
+// ============================================================
+// Insightra - global stylesheet entry (7-1 inspired structure)
+//   abstracts/  -> Sass tools only (auto-injected into components)
+//   base/       -> tokens, reset, typography
+//   components/ -> global design-system classes (.btn, .input, ...)
+//   layout/     -> page layout & print
+//   utilities/  -> small single-purpose helpers
+// Component-specific styles live in each .vue file (scoped).
+// ============================================================
+@use 'base/tokens';
+@use 'base/reset';
+@use 'base/typography';
+@use 'components/buttons';
+@use 'components/forms';
+@use 'components/misc';
+@use 'layout/page';
+@use 'layout/print';
+@use 'utilities/utilities';

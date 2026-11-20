@@ -1,0 +1,68 @@
+@use '../abstracts' as *;
+
+// Page-level layout helpers shared by all dashboard pages.
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: space(4);
+  width: 100%;
+  max-width: $content-max-width;
+  margin: 0 auto;
+
+  @include up('md') {
+    gap: space(5);
+  }
+}
+
+.page-grid {
+  display: grid;
+  gap: space(4);
+  grid-template-columns: minmax(0, 1fr);
+
+  @include up('md') {
+    gap: space(5);
+  }
+
+  &--2 {
+    @include up('lg') {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &--3 {
+    @include up('md') {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include up('xl') {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &--kpi {
+    gap: space(3);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @include up('md') {
+      gap: space(4);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include up('xl') {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+  }
+
+  &--wide-left {
+    @include up('xl') {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: space(2);
+}

@@ -1,0 +1,8 @@
+/** Unique id for client-created entities (widgets, layouts, reports). */
+export function createId(prefix = 'id'): string {
+  const random =
+    typeof crypto !== 'undefined' && 'randomUUID' in crypto
+      ? crypto.randomUUID().slice(0, 8)
+      : Math.random().toString(36).slice(2, 10)
+  return prefix + '-' + Date.now().toString(36) + '-' + random
+}
