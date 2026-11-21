@@ -116,7 +116,7 @@ NUXT_PUBLIC_API_BASE=
 | E2E（Chromium · Firefox · WebKit 桌機 ＋ Pixel 7 · iPhone 14） | 54 / 54 passed |
 
 `.github/workflows/ci.yml` 會在 push / PR 時跑同樣的檢查（lint → typecheck → 單元測試 → build → 三瀏覽器 E2E）。
-此 workflow 尚未在 GitHub 上實際執行過（專案還沒推到 GitHub repository）。
+2026-11-21 已在 GitHub Actions 上全部通過（含 Chromium / Firefox / WebKit E2E）。
 
 明細見 [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md)。
 
