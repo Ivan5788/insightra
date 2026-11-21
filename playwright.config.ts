@@ -12,6 +12,8 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: 'retain-on-failure',
+    // Same clock as the mock API (Asia/Taipei), so CI runners in UTC behave like local runs.
+    timezoneId: 'Asia/Taipei',
   },
   projects: [
     {

@@ -8,7 +8,7 @@
 - 技術選型與「不用的套件」決策（SYSTEM_ARCHITECTURE 第 1 節）。
 
 ## Phase 2 — UI/UX 設計稿 ✅（更新）
-- 2026-11-20 補上設計稿：Claude Design canvas（https://claude.ai/artifact/EFWVzdVAhzkxwLZyUXQfCf），
+- 2026-11-20 補上設計稿：線上互動設計稿（https://claude.ai/artifact/EFWVzdVAhzkxwLZyUXQfCf），
   5 個 Pages、18 個 artboards：Case study、Personas & flows、IA、Design system（foundations + components）、
   Wireframes（desktop / drill-down / edit / mobile）、Hi-fi（Login、Overview light/dark、Drill-down、Data table、Tablet、4 個 Mobile 畫面），
   並包含可點擊原型（Login → Overview → Drill-down；Mobile drawer / data cards）。
@@ -18,7 +18,7 @@
 - ✅ 品牌（名稱、Logo SVG、色彩、字體、Icon 系統）、Design Tokens、Light/Dark、UI 規範文件。
 - ✅ 圖表色盤以色盲模擬工具驗證（以實際卡片底色 #ffffff / #151a24，全部 PASS；Light 模式 3 色對比 < 3:1 → 以 Legend / Tooltip / Table 檢視緩解）。
 - ✅ `design/tokens.json`（Tokens Studio 格式，可匯入 Figma Variables）、`design/reference/` 實際畫面截圖。
-- ❌ **Figma 設計稿未建立**：開發環境沒有 Figma 整合（無 API / MCP / 登入），無法產生可編輯的 Figma 檔。
+- ❌ **Figma 設計稿未建立**：開發流程沒有使用 Figma，因此沒有可編輯的 Figma 檔（設計稿改以線上互動設計稿呈現）。
   已撰寫 `FIGMA_GUIDE.md` 逐步說明如何建立 Pages、Variables、Components、Variants、Auto Layout、Prototype。
 
 ## Phase 3 — 專案初始化 ✅

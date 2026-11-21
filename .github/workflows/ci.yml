@@ -30,6 +30,9 @@ jobs:
         with:
           name: nuxt-output
           path: .output
+          # .output starts with a dot; upload-artifact skips hidden paths by default
+          include-hidden-files: true
+          if-no-files-found: error
           retention-days: 3
 
   e2e:

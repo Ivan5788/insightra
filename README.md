@@ -138,7 +138,7 @@ NUXT_PUBLIC_API_BASE=
 
 ## UI/UX 設計稿
 
-**Design File（Claude Design canvas，可編輯、可 Play 原型）**：https://claude.ai/artifact/EFWVzdVAhzkxwLZyUXQfCf
+**Design File（線上互動設計稿，非 Figma 檔，可瀏覽各頁並操作點擊原型）**：https://claude.ai/artifact/EFWVzdVAhzkxwLZyUXQfCf
 （預設為私人；要給面試官看，請先在頁面右上 Share 開啟分享）
 
 | Page | 內容 |
@@ -178,7 +178,7 @@ NUXT_PUBLIC_API_BASE=
 - 資料為模擬、登入為 Mock（非安全機制）。
 - 使用者自己輸入的內容（自訂 Widget 標題、儀表板名稱、已儲存的報表）不會被翻譯；切換語言時，已開啟的鑽取路徑文字維持開啟當下的語言，重新開啟即更新。
 - 跨瀏覽器測試使用 Playwright 內建的 Firefox / WebKit 引擎，不等同於實機 Safari / iOS 測試。
-- 設計稿為 Claude Design canvas（非 Figma 檔）。
+- 設計稿為線上互動設計稿（非 Figma 檔）。
 
 ## License
 
