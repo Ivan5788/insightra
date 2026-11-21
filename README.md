@@ -2,6 +2,8 @@
 
 > 以 **Nuxt 3 + Vue 3 + TypeScript + Pinia + ECharts + SCSS** 打造的企業級數據分析 SaaS 作品集專案。
 > ⚠️ 畫面上所有數字皆由內建 Mock API 產生，為**模擬資料**，不是真實商業資料。
+>
+> 🔗 **線上 Demo**：https://insightra-v.vercel.app（登入頁已預填示範帳號）
 
 ![Overview — Light](design/reference/desktop-overview-light.png)
 
@@ -131,7 +133,8 @@ NUXT_PUBLIC_API_BASE=
   ```
   （本機未安裝 Docker，此映像檔尚未實際 build 驗證。）
 
-> 目前尚未部署公開網址（需要你自己的平台帳號）。部署完成後請把網址加在本段。
+> 目前部署於 **Vercel**：https://insightra-v.vercel.app（匯入 repository、使用預設設定）。
+> Mock 資料的「今天」固定以台北時間（`Asia/Taipei`）計算，不受 Vercel 伺服器使用 UTC 影響。
 
 ## UI/UX 設計稿
 
@@ -175,7 +178,7 @@ NUXT_PUBLIC_API_BASE=
 - 資料為模擬、登入為 Mock（非安全機制）。
 - 使用者自己輸入的內容（自訂 Widget 標題、儀表板名稱、已儲存的報表）不會被翻譯；切換語言時，已開啟的鑽取路徑文字維持開啟當下的語言，重新開啟即更新。
 - 跨瀏覽器測試使用 Playwright 內建的 Firefox / WebKit 引擎，不等同於實機 Safari / iOS 測試。
-- 公開部署網址待完成；設計稿為 Claude Design canvas（非 Figma 檔）。
+- 設計稿為 Claude Design canvas（非 Figma 檔）。
 
 ## License
 

@@ -120,7 +120,7 @@ Skip link、focus-visible、Modal/Drawer focus trap、Tabs 方向鍵、Combobox 
 3. **登入為 Mock**：示範流程，非安全機制。
 4. **多語系範圍**：全站繁中（預設）/ English，含圖表、日期與 API 標籤；使用者輸入的內容與 HTTP 錯誤訊息不翻譯（登入頁依狀態碼顯示中文）。
 5. **地圖**：以排序長條圖呈現地區分布（設計決策，理由見 UI_UX_GUIDE）。
-6. **無正式部署網址**：已驗證 production build 可執行、附 Dockerfile 與 CI workflow，部署需使用者帳號（見 README）；Dockerfile 與 CI 尚未在實際環境跑過。
+6. **部署**：已部署於 Vercel（https://insightra-v.vercel.app），Serverless 冷啟動時 Mock API 會重新產生資料，但每一天的資料以日期當亂數種子，所以重新產生的結果相同；附 Dockerfile，但尚未實際 build 驗證。
 
 ## 15. 可能的追問與回答提示
 | 問題 | 回答方向 |
