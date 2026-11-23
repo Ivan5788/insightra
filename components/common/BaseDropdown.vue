@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, useId } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 
 /**
  * Dropdown menu / popover.
  * Closes on outside click, Esc, and (optionally) after selecting an item.
  * The trigger slot receives `toggle`, `open` and aria attributes.
+ *
+ * The menu is anchored to the trigger, but on narrow screens a menu can be
+ * wider than the space beside its trigger (e.g. a 300px filter menu under a
+ * button near the left edge). After opening, it is shifted horizontally so it
+ * always stays at least VIEWPORT_GAP px inside the viewport.
  */
 const props = withDefaults(
   defineProps<{
@@ -19,6 +24,41 @@ const props = withDefaults(
 const open = ref(false)
 const root = ref<HTMLElement | null>(null)
 const menuId = 'dropdown-' + useId()
+const menu = ref<HTMLElement | null>(null)
+const shift = ref(0)
+const VIEWPORT_GAP = 12
+
+/** Horizontal offset that keeps the menu inside the viewport. */
+function place(): void {
+  const el = menu.value
+  if (!el) return
+  const rect = el.getBoundingClientRect()
+  const left = rect.left - shift.value // position without the current shift
+  const right = left + rect.width
+  const viewport = document.documentElement.clientWidth
+  let next = 0
+  if (right > viewport - VIEWPORT_GAP) next = viewport - VIEWPORT_GAP - right
+  if (left + next < VIEWPORT_GAP) next = VIEWPORT_GAP - left
+  shift.value = Math.round(next)
+}
+
+watch(open, async (isOpen) => {
+  if (!isOpen) return
+  shift.value = 0
+  await nextTick()
+  place()
+})
+
+/** Moves the anchored edge (left or right) by the shift — plain offsets, no transform. */
+const menuStyle = computed(() =>
+  props.align === 'left'
+    ? { width: props.width, left: shift.value + 'px' }
+    : { width: props.width, right: -shift.value + 'px' },
+)
+
+function onResize(): void {
+  if (open.value) place()
+}
 
 function toggle(): void {
   open.value = !open.value
@@ -37,8 +77,14 @@ function onMenuClick(event: MouseEvent): void {
   if (props.closeOnSelect && target.closest('[data-dropdown-item]')) close()
 }
 
-onMounted(() => document.addEventListener('click', onDocumentClick))
-onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick))
+onMounted(() => {
+  document.addEventListener('click', onDocumentClick)
+  window.addEventListener('resize', onResize)
+})
+onBeforeUnmount(() => {
+  document.removeEventListener('click', onDocumentClick)
+  window.removeEventListener('resize', onResize)
+})
 
 defineExpose({ close, open })
 </script>
@@ -55,9 +101,10 @@ defineExpose({ close, open })
       <div
         v-if="open"
         :id="menuId"
+        ref="menu"
         class="dropdown__menu"
         :class="'dropdown__menu--' + align"
-        :style="{ width }"
+        :style="menuStyle"
         :aria-label="label"
         @click="onMenuClick"
       >

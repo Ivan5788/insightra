@@ -11,7 +11,7 @@
 | TypeScript（vue-tsc） | `npm run typecheck` | ✅ 0 errors |
 | 單元測試（Vitest） | `npm test` | ✅ **84 / 84 passed**（10 files，約 2 s） |
 | Production build | `npm run build` | ✅ 成功 |
-| E2E（Playwright，對 production build） | `npm run test:e2e` | ✅ **54 / 54 passed**（6 個 project，約 51 s） |
+| E2E（Playwright，對 production build） | `npm run test:e2e` | ✅ **58 / 58 passed**（6 個 project，約 66 s） |
 
 ## 2. 單元測試明細
 
@@ -35,9 +35,9 @@
 | desktop-chromium | Desktop Chrome | 除 responsive 外全部（16） | 16 passed |
 | desktop-firefox | Desktop Firefox | 同上（16） | 16 passed |
 | desktop-webkit | Desktop Safari（WebKit） | 同上（16） | 16 passed |
-| mobile-chromium | Pixel 7 | responsive（3） | 3 passed |
-| mobile-webkit | iPhone 14（WebKit） | responsive（3） | 3 passed |
-| **合計** | | | **54 passed** |
+| mobile-chromium | Pixel 7 | responsive（5） | 5 passed |
+| mobile-webkit | iPhone 14（WebKit） | responsive（5） | 5 passed |
+| **合計** | | | **58 passed** |
 
 E2E 斷言使用預設語言（繁體中文）的畫面文字。
 
@@ -47,7 +47,7 @@ E2E 斷言使用預設語言（繁體中文）的畫面文字。
 | `dashboard.spec.ts` | KPI / 圖表 / 模擬資料標示 · 切換日期 → KPI 改變且 URL 更新 · 移除＋新增 Widget → 儲存 → 重新整理仍保留 · 取消還原（含「編輯模式無水平捲動」回歸檢查）· Dark mode 套用並記住 |
 | `drilldown.spec.ts` | 營收四層鑽取 + Back + Breadcrumb 回第一層 · 渠道流程顯示漏斗 |
 | `data-table.spec.ts` | 依訂單編號搜尋（URL 同步、1 筆）· 依金額排序 + 分頁 · 全選 → 批次標記 · CSV 下載檔名 |
-| `responsive.spec.ts`（Pixel 7、iPhone 14） | 8 個主要頁面無水平溢出 · 漢堡選單抽屜導覽 · 資料表切換為卡片 |
+| `responsive.spec.ts`（Pixel 7、iPhone 14） | 8 個主要頁面無水平溢出 · 漢堡選單抽屜導覽 · 資料表切換為卡片 · 320px 寬時所有下拉選單都在畫面內 · 回到頂部按鈕 |
 | `i18n.spec.ts` | 預設繁中（`<html lang="zh-Hant-TW">`）→ 設定頁切換 English → 標題變英文、仍停在同一個分頁、KPI 數字不變、鑽取面板（API 標籤）為英文、重新整理後保留選擇 |
 
 ## 4. 測試過程中發現並修正的問題
@@ -61,6 +61,9 @@ E2E 斷言使用預設語言（繁體中文）的畫面文字。
 | iPhone（WebKit）報表頁水平溢出 65px | 新增 mobile-webkit project 後 responsive 測試失敗 | 手機卡片改 `minmax(0, 1fr)` ＋ `min-width: 0`，長標題可截斷 |
 | 切換語言後設定頁跳回第一個分頁 | 撰寫 i18n E2E 時發現 | 分頁狀態同步到 URL（`?tab=`） |
 | 鑽取每日表格出現兩個「日期」欄 | 繁中截圖目視 | 星期欄改為「星期」 |
+| 手機版下拉選單超出畫面左側（320px 寬：篩選 −202px、通知 −36px、欄位 −58px） | 使用者回報 → Playwright 量測選單位置 | `BaseDropdown` 開啟後量測位置，水平位移到距畫面邊緣至少 12px；新增回歸測試 |
+| 通知選單「Mark all as read」未翻譯 | 手機截圖目視 | 改用 `tt()` |
+| CI 的 E2E 拿不到 build 結果 | GitHub Actions 失敗訊息 | `upload-artifact` 預設略過以點開頭的 `.output`，加上 `include-hidden-files` |
 
 ## 5. RWD 檢查（實際截圖）
 `design/reference/` 中的截圖由 `scripts/capture-screenshots.mjs` 對 production build 擷取：

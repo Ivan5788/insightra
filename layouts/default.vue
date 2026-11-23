@@ -3,7 +3,8 @@ const { tt } = useI18n()
 /**
  * App shell for authenticated pages:
  *   sidebar (desktop) / drawer (mobile) · header · main · footer
- * plus the global drill-down panel, which any page can open.
+ * plus the global drill-down panel, which any page can open,
+ * and a floating back-to-top button.
  */
 const settings = useSettingsStore()
 const ui = useUiStore()
@@ -45,6 +46,7 @@ watch(
     </div>
 
     <DrillDownPanel />
+    <BackToTop />
   </div>
 </template>
 

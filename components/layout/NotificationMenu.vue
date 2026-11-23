@@ -38,7 +38,7 @@ onMounted(() => store.load())
             class="notif-menu__link"
             @click="store.markAllRead()"
           >
-            Mark all as read
+            {{ tt('Mark all as read', '全部標為已讀') }}
           </button>
         </div>
         <div v-if="store.loading" class="notif-menu__state"><LoadingSpinner /></div>

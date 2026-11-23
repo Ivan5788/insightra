@@ -77,10 +77,16 @@ Analytics、Sales、Users、Reports（列表 / 建立 / 詳細 / CSV / PDF 列�
 - **部署時區**：Vercel 等平台以 UTC 執行，伺服器的「今天」會比台灣晚 8 小時（台灣 00:00–08:00 今日資料會是空的）。模擬資料改用店家時區 `Asia/Taipei`（`server/mock/db.ts` 的 `storeClock`）。
 - 測試：單元 84 / 84、E2E 54 / 54（見 TEST_REPORT）。
 
+## Phase 11 — 上線後修正 ✅（2026-11-21 ～ 11-23）
+- 推上 GitHub、部署到 Vercel（https://insightra-v.vercel.app）。
+- CI：E2E job 下載不到 build 結果，因為 `upload-artifact` 預設略過以點開頭的資料夾（`.output`）；加上 `include-hidden-files: true` 與 `if-no-files-found: error`。Playwright 固定用 `Asia/Taipei` 時區，與 Mock API 時鐘一致。修正後 GitHub Actions 全部通過。
+- 手機版下拉選單超出畫面：選單以觸發按鈕為錨點，按鈕靠左時，向左展開的 300px 選單會跑出畫面（320px 寬時篩選選單左緣在 −202px）。`BaseDropdown` 開啟後量測實際位置，若超出就調整 `left` / `right`，讓選單距畫面邊緣至少 12px；視窗縮放時重新計算。
+- 新增「回到頂部」浮動按鈕（`BackToTop.vue`）：捲動超過 400px 才出現；平滑捲動（使用者設定減少動態時改為直接跳轉），並把焦點移回主內容，鍵盤與螢幕閱讀器使用者也會回到頂部。
+- 測試：E2E 58 / 58（新增 320px 下拉選單位置、回到頂部各一項，Pixel 7 與 iPhone 14 都跑）。
+
 ## 後續可改進
 1. 依 FIGMA_GUIDE 完成 Figma 設計稿並放上連結。
-2. 部署並在 README 放上 Demo 網址。
-3. 數字格式依語系調整（目前金額固定為 USD、千分位逗號）；考慮改用 `Intl` 與 ICU 複數規則。
-4. Widget 自由尺寸（grid-row span、拖曳調整）。
-5. 將 Widget / 報表存到後端，跨裝置同步。
-6. 加入 Lighthouse CI 與視覺回歸測試。
+2. 數字格式依語系調整（目前金額固定為 USD、千分位逗號）；考慮改用 `Intl` 與 ICU 複數規則。
+3. Widget 自由尺寸（grid-row span、拖曳調整）。
+4. 將 Widget / 報表存到後端，跨裝置同步。
+5. 加入 Lighthouse CI 與視覺回歸測試。
